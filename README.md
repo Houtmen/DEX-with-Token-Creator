@@ -22,7 +22,7 @@
 
 ## Available Content
 
-In the project directory, you can run:
+In the project directory, you can find:
 
 ### `"DeployableContracts"`,
 
