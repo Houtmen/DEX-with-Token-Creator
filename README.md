@@ -1,76 +1,70 @@
-# DEX with Token Creator
-Decentralized exchange and Token Creator
+<h1 align="center"><project-name></h1>
 
-## Motivation
+<p align="center"><project-description></p>
 
-For a altcoin there 
+## Links
 
+- [Repo](https://github.com/Rohit19060/<project-name> "<project-name> Repo")
 
-## Method and results
+- [Live](<Homepage url> "Live View")
 
-First, introduce and motivate your chosen method, and explain how it contributes to solving the research question/business problem.
+- [Bugs](https://github.com/Rohit19060/<project-name>/issues "Issues Page")
 
-Second, summarize your results concisely. Make use of subheaders where appropriate.
+- [API](<API Link> "API")
 
+## Screenshots
 
-## Repository overview
+![Home Page](/screenshots/1.png "Home Page")
 
-contracts
-         ├── DeployableContracts
-         │   └── analysis
-         ├── interfaces
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   └── analysis
-         ├── libraries
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   └── analysis
-         ├── test
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   ├── analysis
-         │   └── analysis
-         ├── FogeDexERC20.sol
-         ├── FogeDexFactory.sol
-         ├── FogeDexPair.sol
-         ├── FogeDexRouter01.sol
-         ├── FogeDexRouter02.sol
-         └── FogeDexTokenFactory.sol
-LICENSE
-README.md
+![](/screenshots/2.png)
 
+![](/screenshots/3.png)
 
-## Running instructions
+## Available Content
 
-Explain to potential users how to run/replicate your workflow. If necessary, touch upon the required input data, which secret credentials are required (and how to obtain them), which software tools are needed to run the workflow (including links to the installation instructions), and how to run the workflow.
+In the project directory, you can run:
 
+### `npm start" : "react-scripts start"`,
 
-## More resources
+The app is built using `create-react-app` so this command Runs the app in Development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser. You also need to run the server file as well to completely run the app. The page will reload if you make edits.
+You will also see any lint errors in the console.
 
-Point interested users to any related literature and/or documentation.
+### `"npm run build": "react-scripts build"`,
 
+Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes. Your app will be ready to deploy!
 
-## About
+### `"npm run test": "react-scripts test"`,
 
-Explain who has contributed to the repository. You can say it has been part of a class you've taken at Tilburg University.
+Launches the test runner in the interactive watch mode.
+
+### `"npm run dev": "concurrently "nodemon server" "npm run start"`,
+
+For running the server and app together I am using concurrently this helps a lot in the MERN application as it runs both the server (client and server) concurrently. So you can work on them both together.
+
+### `"serve": "node server"`
+
+For running the server file on you can use this command.
+
+### `npm run serve`
+
+## Built With
+
+- Solidity
+
+## Future Updates
+
+- [ ] Building the front-end with React
+
+## Author
+
+**Houtman**
+
+- [Profile](https://github.com/houtmen "Houtman")
+- [Email](mailto:houtman80@gmail.com?subject=Hi "Hi!")
+- [Website](https://kingtechnologies.in "Welcome")
+
+## 🤝 Support
+
+Contributions, issues, and feature requests are welcome!
+
+Give a ⭐️ if you like this project!
