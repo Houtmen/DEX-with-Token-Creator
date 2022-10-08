@@ -1,16 +1,16 @@
 pragma solidity >=0.5.0;
 
-import '../interfaces/IFogeDexPair.sol';
-import '../interfaces/IFogeDexFactory.sol';
+import '../interfaces/IDogeDexPair.sol';
+import '../interfaces/IDogeDexFactory.sol';
 import './Babylonian.sol';
 import './FullMath.sol';
 
 import './SafeMath.sol';
-import './FogeDexLibrary.sol';
+import './DogeDexLibrary.sol';
 
 // library containing some math for dealing with the liquidity shares of a pair, e.g. computing their exact value
 // in terms of the underlying tokens
-library FogeDexMathLibrary {
+library DogeDexMathLibrary {
     using SafeMath for uint256;
 
     // computes the direction and magnitude of the profit-maximizing trade
@@ -48,9 +48,9 @@ library FogeDexMathLibrary {
         uint256 truePriceTokenB
     ) view internal returns (uint256 reserveA, uint256 reserveB) {
         // first get reserves before the swap
-        (reserveA, reserveB) = FogeDexLibrary.getReserves(factory, tokenA, tokenB);
+        (reserveA, reserveB) = DogeDexLibrary.getReserves(factory, tokenA, tokenB);
 
-        require(reserveA > 0 && reserveB > 0, 'FogeDexArbitrageLibrary: ZERO_PAIR_RESERVES');
+        require(reserveA > 0 && reserveB > 0, 'DogeDexArbitrageLibrary: ZERO_PAIR_RESERVES');
 
         // then compute how much to swap to arb to the true price
         (bool aToB, uint256 amountIn) = computeProfitMaximizingTrade(truePriceTokenA, truePriceTokenB, reserveA, reserveB);
@@ -61,11 +61,11 @@ library FogeDexMathLibrary {
 
         // now affect the trade to the reserves
         if (aToB) {
-            uint amountOut = FogeDexLibrary.getAmountOut(amountIn, reserveA, reserveB);
+            uint amountOut = DogeDexLibrary.getAmountOut(amountIn, reserveA, reserveB);
             reserveA += amountIn;
             reserveB -= amountOut;
         } else {
-            uint amountOut = FogeDexLibrary.getAmountOut(amountIn, reserveB, reserveA);
+            uint amountOut = DogeDexLibrary.getAmountOut(amountIn, reserveB, reserveA);
             reserveB += amountIn;
             reserveA -= amountOut;
         }
@@ -103,9 +103,9 @@ library FogeDexMathLibrary {
         address tokenB,
         uint256 liquidityAmount
     ) internal view returns (uint256 tokenAAmount, uint256 tokenBAmount) {
-        (uint256 reservesA, uint256 reservesB) = FogeDexLibrary.getReserves(factory, tokenA, tokenB);
-        IFogeDexPair pair = IFogeDexPair(FogeDexLibrary.pairFor(factory, tokenA, tokenB));
-        bool feeOn = IFogeDexFactory(factory).feeTo() != address(0);
+        (uint256 reservesA, uint256 reservesB) = DogeDexLibrary.getReserves(factory, tokenA, tokenB);
+        IDogeDexPair pair = DogeDexPair(DogeDexLibrary.pairFor(factory, tokenA, tokenB));
+        bool feeOn = IDogeDexFactory(factory).feeTo() != address(0);
         uint kLast = feeOn ? pair.kLast() : 0;
         uint totalSupply = pair.totalSupply();
         return computeLiquidityValue(reservesA, reservesB, totalSupply, liquidityAmount, feeOn, kLast);
@@ -124,8 +124,8 @@ library FogeDexMathLibrary {
         uint256 tokenAAmount,
         uint256 tokenBAmount
     ) {
-        bool feeOn = IFogeDexFactory(factory).feeTo() != address(0);
-        IFogeDexPair pair = IFogeDexPair(FogeDexLibrary.pairFor(factory, tokenA, tokenB));
+        bool feeOn = IDogeDexFactory(factory).feeTo() != address(0);
+        IDogeDexPair pair = IDogeDexPair(DogeDexLibrary.pairFor(factory, tokenA, tokenB));
         uint kLast = feeOn ? pair.kLast() : 0;
         uint totalSupply = pair.totalSupply();
 

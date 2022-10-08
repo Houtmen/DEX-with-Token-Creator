@@ -1,17 +1,17 @@
 pragma solidity =0.5.16;
 
-import './interfaces/IFogeDexFactory.sol';
-import './FogeDexPair.sol';
+import './interfaces/IDogeDexFactory.sol';
+import './DogeDexPair.sol';
 
-contract FogeDexTokenFactory{
-    address public fogeToken;
+contract DogeDexTokenFactory{
+    address public dogeToken;
     address[] public currentPresales;
     address[] public pastPresales;
     address[] public nonPresales;
     struct tokenInfoStruct {
         address owner;
         address token;
-        address token2; //always foge
+        address token2; //always doge
         uint256 presaleEndTime;
         uint256 presaleLimit;
         uint256 presalePerc; //% going to presale(max 40)
@@ -56,7 +56,7 @@ contract FogeDexTokenFactory{
         //add contract and info to mapping
         tokenInfo[tokenAddress].owner = owner;
         tokenInfo[tokenAddress].token = tokenAddress;
-        tokenInfo[tokenAddress].token1 = fogeToken;
+        tokenInfo[tokenAddress].token1 = dogeToken;
         require(ownerPerc + presalePerc + stakePerc + liqPerc < 100, "Cannot exceed 99%");
         require(ownerPerc <= 10, "Owner % must be less than 11");
         tokenInfo[tokenAddress].ownerPerc = ownerPerc;
@@ -97,15 +97,15 @@ contract FogeDexTokenFactory{
             tokenInfo[tokenAddress].liqPerc
         ).div(100);
         // approve token transfer to cover all possible scenarios
-        IERC20(token).approve(address(fogeDEXRouter), tokenAmount);
-        IERC20(fogeToken).approve(address(fogeDEXRouter), liqAmount);
+        IERC20(token).approve(address(dogeDEXRouter), tokenAmount);
+        IERC20(dogeToken).approve(address(dogeDEXRouter), liqAmount);
         
         // add the liquidity
-        try fogeDEXRouter.addLiquidity(
+        try dogeDEXRouter.addLiquidity(
             token,
-            fogeToken,
+            dogeToken,
             tokenAmount,
-            fogeAmount,
+            dogeAmount,
             0, // slippage is unavoidable
             0, // slippage is unavoidable
             address(0),
@@ -121,7 +121,7 @@ contract FogeDexTokenFactory{
         //check that presale has not ended
         require(tokenInfo[token].presaleEndTime > block.timestamp, "Presale has ended");
         //transfer over token2
-        IERC20(fogeToken).transferFrom(msg.sender, address(this), amount);
+        IERC20(dogeToken).transferFrom(msg.sender, address(this), amount);
         //add amount to presale limit
         require(tokenInfo[tokenAddress].totalDeposited.add(amount) <= tokenInfo[tokenAddress].presaleLimit, "Exceeds presale limit");
         tokenInfo[tokenAddress].totalDeposited = tokenInfo[tokenAddress].totalDeposited.add(amount);

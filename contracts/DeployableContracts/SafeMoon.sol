@@ -767,13 +767,13 @@ contract SafeMoon is Context, IERC20, Ownable {
         _liquidityFee = liqFee; 
         _rOwned[_msgSender()] = _rTotal;
         
-        FogeDEXRouter02 _fogeDEXRouter = IFogeDEXRouter02('');
-         // Create a foge pair for this new token
-        fogePair = IUniswapV2Factory(_fogeDEXRouter.factory())
-            .createPair(address(this), foge);
+        DogeDEXRouter02 _dogeDEXRouter = IDogeDEXRouter02('');
+         // Create a doge pair for this new token
+        dogePair = IUniswapV2Factory(_dogeDEXRouter.factory())
+            .createPair(address(this), doge);
 
         // set the rest of the contract variables
-        fogeDEXRouter = _fogeDEXRouter;
+        dogeDEXRouter = _dogeDEXRouter;
         
         //exclude owner and this contract from fee
         _isExcludedFromFee[owner()] = true;

@@ -1,8 +1,8 @@
 pragma solidity =0.5.16;
 
-import '../FogeDexERC20.sol';
+import '../DogeDexERC20.sol';
 
-contract ERC20 is FogeDexERC20 {
+contract ERC20 is DogeDexERC20 {
     constructor(uint _totalSupply) public {
         _mint(msg.sender, _totalSupply);
     }
