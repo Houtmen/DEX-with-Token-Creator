@@ -48,6 +48,7 @@ For running the server and app together I am using concurrently this helps a lot
 ## Future Updates
 
 - [ ] Building the front-end with React
+- [ ] Adding support for UniSwap V3
 
 ## Author
 
